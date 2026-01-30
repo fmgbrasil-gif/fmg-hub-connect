@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Professional Corporate Design System - Enterprise Grade */
+
+@layer base {
+  :root {
+    --background: 220 18% 98%;
+    --foreground: 220 20% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 12%;
+
+    --primary: 215 70% 45%;
+    --primary-foreground: 0 0% 100%;
+    
+    --primary-glow: 215 65% 55%;
+    --primary-dark: 215 75% 35%;
+
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 20% 18%;
+
+    --muted: 220 15% 97%;
+    --muted-foreground: 220 12% 42%;
+
+    --accent: 215 50% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 18% 90%;
+    --input: 220 18% 94%;
+    --ring: 215 70% 45%;
+
+    --radius: 0.625rem;
+
+    /* Professional Gradients - Subtle */
+    --gradient-primary: linear-gradient(135deg, hsl(215 70% 45%) 0%, hsl(215 65% 55%) 100%);
+    --gradient-card: linear-gradient(155deg, hsl(0 0% 100%) 0%, hsl(220 25% 99%) 100%);
+    --gradient-glass: linear-gradient(135deg, hsla(0 0% 100% / 0.95) 0%, hsla(220 25% 99% / 0.9) 100%);
+    
+    /* Enterprise Shadows - Neutral */
+    --shadow-xs: 0 1px 2px 0 hsl(220 20% 12% / 0.05);
+    --shadow-sm: 0 2px 4px -1px hsl(220 20% 12% / 0.06), 0 1px 2px -1px hsl(220 20% 12% / 0.03);
+    --shadow-md: 0 4px 6px -1px hsl(220 20% 12% / 0.08), 0 2px 4px -2px hsl(220 20% 12% / 0.04);
+    --shadow-lg: 0 10px 15px -3px hsl(220 20% 12% / 0.10), 0 4px 6px -4px hsl(220 20% 12% / 0.05);
+    --shadow-xl: 0 20px 25px -5px hsl(220 20% 12% / 0.12), 0 8px 10px -6px hsl(220 20% 12% / 0.06);
+    --shadow-2xl: 0 25px 50px -12px hsl(220 20% 12% / 0.20);
+    --shadow-glow: 0 4px 20px -5px hsl(220 20% 12% / 0.15);
+    --shadow-glow-accent: 0 4px 20px -5px hsl(220 20% 12% / 0.15);
+    
+    /* Sidebar */
+    --sidebar-background: 220 20% 99%;
+    --sidebar-foreground: 220 18% 22%;
+    --sidebar-primary: 215 70% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 96%;
+    --sidebar-accent-foreground: 220 18% 22%;
+    --sidebar-border: 220 18% 92%;
+    --sidebar-ring: 215 70% 45%;
+  }
+
+  .dark {
+    --background: 220 22% 6%;
+    --foreground: 220 10% 96%;
+
+    --card: 220 20% 9%;
+    --card-foreground: 220 10% 96%;
+
+    --popover: 220 20% 9%;
+    --popover-foreground: 220 10% 96%;
+
+    --primary: 215 65% 55%;
+    --primary-foreground: 0 0% 100%;
+    
+    --primary-glow: 215 60% 65%;
+    --primary-dark: 215 70% 45%;
+
+    --secondary: 220 15% 14%;
+    --secondary-foreground: 220 10% 92%;
+
+    --muted: 220 18% 12%;
+    --muted-foreground: 220 10% 58%;
+
+    --accent: 215 50% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 18% 16%;
+    --input: 220 18% 14%;
+    --ring: 215 65% 55%;
+    
+    --gradient-primary: linear-gradient(135deg, hsl(215 65% 55%) 0%, hsl(215 60% 65%) 100%);
+    --gradient-card: linear-gradient(155deg, hsl(220 20% 9%) 0%, hsl(220 18% 11%) 100%);
+    --gradient-glass: linear-gradient(135deg, hsla(220 20% 9% / 0.95) 0%, hsla(220 18% 11% / 0.9) 100%);
+    
+    --shadow-xs: 0 1px 2px 0 hsl(0 0% 0% / 0.2);
+    --shadow-sm: 0 2px 4px -1px hsl(0 0% 0% / 0.3), 0 1px 2px -1px hsl(0 0% 0% / 0.15);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.4), 0 2px 4px -2px hsl(0 0% 0% / 0.2);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.5), 0 4px 6px -4px hsl(0 0% 0% / 0.25);
+    --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.6), 0 8px 10px -6px hsl(0 0% 0% / 0.3);
+    --shadow-2xl: 0 25px 50px -12px hsl(0 0% 0% / 0.7);
+    --shadow-glow: 0 4px 20px -5px hsl(0 0% 0% / 0.25);
+    --shadow-glow-accent: 0 4px 20px -5px hsl(0 0% 0% / 0.25);
+    
+    --sidebar-background: 220 20% 8%;
+    --sidebar-foreground: 220 10% 92%;
+    --sidebar-primary: 215 65% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 18% 12%;
+    --sidebar-accent-foreground: 220 10% 92%;
+    --sidebar-border: 220 18% 14%;
+    --sidebar-ring: 215 65% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-feature-settings: "cv11", "ss01", "ss02", "ss03";
+    letter-spacing: -0.01em;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold tracking-tight;
+    font-family: 'Sora', 'Inter', sans-serif;
+    letter-spacing: -0.02em;
+  }
+  
+  /* Corporate solid background */
+  .corporate-bg {
+    @apply bg-background;
+  }
+  
+  /* Glass effect - simplified */
+  .glass {
+    @apply bg-card border border-border;
+  }
+  
+  /* Modo iframe - ajustes globais */
+  .iframe-mode {
+    --content-padding: 0.5rem;
+  }
+
+  .iframe-mode .hide-in-iframe {
+    display: none !important;
+  }
+
+  /* Safe area para dispositivos com notch */
+  @supports (padding: env(safe-area-inset-top)) {
+    .safe-area-top {
+      padding-top: env(safe-area-inset-top);
+    }
+    .safe-area-bottom {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+
+  /* Altura dinâmica para viewport mobile (100dvh) */
+  .h-dvh {
+    height: 100dvh;
+  }
+
+  .min-h-dvh {
+    min-height: 100dvh;
+  }
+
+  /* Scrollbar mais fina em iframes */
+  .iframe-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .iframe-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .iframe-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 3px;
+  }
+
+  .iframe-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+
+  /* Firefox scrollbar */
+  .iframe-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+}
