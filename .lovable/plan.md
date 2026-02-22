@@ -1,35 +1,64 @@
 
 
-## Plano: Migrar Login para Google OAuth
-
-### Contexto
-O login por email/senha esta desabilitado no Supabase (confirmado pelo erro `email_provider_disabled`). O Google OAuth ja esta configurado no Supabase. Precisamos atualizar a aplicacao para usar exclusivamente o login com Google.
+## Plano: Adicionar Login com Email/Senha + Google OAuth
 
 ### Alteracoes
 
-**1. `src/pages/Login.tsx`** - Simplificar completamente
-- Remover formularios de email/senha e tabs (login/signup)
-- Remover schemas de validacao (zod)
-- Adicionar um unico botao "Entrar com Google"
-- Chamar `signInWithGoogle()` do AuthContext
-- Manter o layout visual (logo, card, gradiente)
+**1. `src/contexts/AuthContext.tsx`**
+- Adicionar funcoes `signIn(email, password)` e `signUp(email, password, fullName)`
+- Atualizar `AuthContextType` com os novos metodos
+- Manter `signInWithGoogle` existente
 
-**2. `src/contexts/AuthContext.tsx`** - Adicionar metodo Google OAuth
-- Adicionar funcao `signInWithGoogle()` que chama `supabase.auth.signInWithOAuth({ provider: 'google' })`
-- Configurar `redirectTo` para `window.location.origin`
-- Remover (ou manter como fallback) `signIn` e `signUp` por email/senha
-- Atualizar o tipo `AuthContextType` com o novo metodo
+**2. `src/pages/Login.tsx`**
+- Adicionar Tabs com duas abas: "Entrar" e "Criar Conta"
+- Aba "Entrar": formulario com email + senha + botao "Entrar" + botao "Entrar com Google"
+- Aba "Criar Conta": formulario com nome + email + senha + botao "Criar Conta"
+- Separador visual "ou" entre o formulario e o botao Google
+- Usar componentes existentes: Input, Label, Tabs, Separator
+- Tratar erros com toast
 
-### Resultado
-- Pagina de login limpa com apenas o botao "Entrar com Google"
-- Sem formularios de email/senha
-- Fluxo OAuth completo via redirect do Google
-- Trigger `handle_new_user` ja cria perfil automaticamente ao cadastrar via Google
+### Detalhes Tecnicos
+
+**AuthContext - novas funcoes:**
+
+```typescript
+signIn: (email: string, password: string) => Promise<{ error: any }>;
+signUp: (email: string, password: string, fullName: string) => Promise<{ error: any }>;
+```
+
+- `signIn` chama `supabase.auth.signInWithPassword({ email, password })`
+- `signUp` chama `supabase.auth.signUp({ email, password, options: { data: { full_name: fullName }, emailRedirectTo: window.location.origin } })`
+
+**Login.tsx - estrutura visual:**
+
+```
+[Logo FMG]
+Hub Interno FMG
+
+[Tab: Entrar] [Tab: Criar Conta]
+
+--- Aba Entrar ---
+Email: [________]
+Senha: [________]
+[Entrar]
+
+──── ou ────
+
+[Entrar com Google]
+
+--- Aba Criar Conta ---
+Nome: [________]
+Email: [________]
+Senha: [________]
+[Criar Conta]
+```
+
+### Importante
+- O provider de email/senha precisa estar habilitado no Supabase Dashboard (Authentication > Providers > Email). Se nao estiver, o login por email/senha retornara erro.
 
 ### Arquivos modificados
 
 | Arquivo | Alteracao |
 |---------|-----------|
-| `src/contexts/AuthContext.tsx` | Adicionar `signInWithGoogle()`, atualizar interface |
-| `src/pages/Login.tsx` | Substituir formularios por botao Google |
-
+| `src/contexts/AuthContext.tsx` | Adicionar `signIn` e `signUp` |
+| `src/pages/Login.tsx` | Tabs com formularios + Google OAuth |
