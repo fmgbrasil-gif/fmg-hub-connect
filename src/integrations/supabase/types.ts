@@ -283,6 +283,65 @@ export type Database = {
         }
         Relationships: []
       }
+      correcoes_xml: {
+        Row: {
+          created_at: string
+          divergencias_por_imposto: Json | null
+          empresa_id: string
+          exportado_em: string | null
+          id: string
+          impostograma_arquivo: string | null
+          impostograma_formato: string | null
+          nfe_arquivos: Json
+          status: string
+          total_correcoes_aprovadas: number | null
+          total_divergencias: number | null
+          total_matches: number | null
+          total_nfe_itens: number | null
+          usuario_id: string
+        }
+        Insert: {
+          created_at?: string
+          divergencias_por_imposto?: Json | null
+          empresa_id: string
+          exportado_em?: string | null
+          id?: string
+          impostograma_arquivo?: string | null
+          impostograma_formato?: string | null
+          nfe_arquivos?: Json
+          status?: string
+          total_correcoes_aprovadas?: number | null
+          total_divergencias?: number | null
+          total_matches?: number | null
+          total_nfe_itens?: number | null
+          usuario_id: string
+        }
+        Update: {
+          created_at?: string
+          divergencias_por_imposto?: Json | null
+          empresa_id?: string
+          exportado_em?: string | null
+          id?: string
+          impostograma_arquivo?: string | null
+          impostograma_formato?: string | null
+          nfe_arquivos?: Json
+          status?: string
+          total_correcoes_aprovadas?: number | null
+          total_divergencias?: number | null
+          total_matches?: number | null
+          total_nfe_itens?: number | null
+          usuario_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "correcoes_xml_empresa_id_fkey"
+            columns: ["empresa_id"]
+            isOneToOne: false
+            referencedRelation: "empresas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       custom_exclusive_tools: {
         Row: {
           created_at: string | null
@@ -318,6 +377,242 @@ export type Database = {
           url?: string | null
         }
         Relationships: []
+      }
+      departments: {
+        Row: {
+          color: string
+          created_at: string
+          description: string | null
+          icon: string | null
+          id: string
+          name: string
+          slug: Database["public"]["Enums"]["department_slug"]
+        }
+        Insert: {
+          color?: string
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          name: string
+          slug: Database["public"]["Enums"]["department_slug"]
+        }
+        Update: {
+          color?: string
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          name?: string
+          slug?: Database["public"]["Enums"]["department_slug"]
+        }
+        Relationships: []
+      }
+      empresas: {
+        Row: {
+          ativa: boolean | null
+          cnpj: string
+          created_at: string | null
+          created_by: string | null
+          id: string
+          inscricao_estadual: string | null
+          nome_fantasia: string | null
+          razao_social: string
+          regime_tributario: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          ativa?: boolean | null
+          cnpj: string
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          inscricao_estadual?: string | null
+          nome_fantasia?: string | null
+          razao_social: string
+          regime_tributario?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          ativa?: boolean | null
+          cnpj?: string
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          inscricao_estadual?: string | null
+          nome_fantasia?: string | null
+          razao_social?: string
+          regime_tributario?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      grupos_fiscais: {
+        Row: {
+          aliq_cofins_entrada: number | null
+          aliq_cofins_saida: number | null
+          aliq_icms: number | null
+          aliq_ipi: number | null
+          aliq_pis_entrada: number | null
+          aliq_pis_saida: number | null
+          base_credito: string | null
+          chave_grupo: string
+          created_at: string | null
+          cst_cofins_saida: string | null
+          cst_icms_saida: string | null
+          cst_ipi_entrada: string | null
+          cst_ipi_saida: string | null
+          cst_pis_entrada: string | null
+          cst_pis_saida: string
+          descricao: string
+          empresa_id: string
+          id: string
+          importacao_id: string
+          nat_rec_pis: string | null
+          ordem: number | null
+          selecionado: boolean | null
+          sujeito_pis_cofins: string | null
+          tipo_pis_cofins: string | null
+          tipo_tributacao: string | null
+          vinculo_credito: string | null
+        }
+        Insert: {
+          aliq_cofins_entrada?: number | null
+          aliq_cofins_saida?: number | null
+          aliq_icms?: number | null
+          aliq_ipi?: number | null
+          aliq_pis_entrada?: number | null
+          aliq_pis_saida?: number | null
+          base_credito?: string | null
+          chave_grupo: string
+          created_at?: string | null
+          cst_cofins_saida?: string | null
+          cst_icms_saida?: string | null
+          cst_ipi_entrada?: string | null
+          cst_ipi_saida?: string | null
+          cst_pis_entrada?: string | null
+          cst_pis_saida: string
+          descricao: string
+          empresa_id: string
+          id?: string
+          importacao_id: string
+          nat_rec_pis?: string | null
+          ordem?: number | null
+          selecionado?: boolean | null
+          sujeito_pis_cofins?: string | null
+          tipo_pis_cofins?: string | null
+          tipo_tributacao?: string | null
+          vinculo_credito?: string | null
+        }
+        Update: {
+          aliq_cofins_entrada?: number | null
+          aliq_cofins_saida?: number | null
+          aliq_icms?: number | null
+          aliq_ipi?: number | null
+          aliq_pis_entrada?: number | null
+          aliq_pis_saida?: number | null
+          base_credito?: string | null
+          chave_grupo?: string
+          created_at?: string | null
+          cst_cofins_saida?: string | null
+          cst_icms_saida?: string | null
+          cst_ipi_entrada?: string | null
+          cst_ipi_saida?: string | null
+          cst_pis_entrada?: string | null
+          cst_pis_saida?: string
+          descricao?: string
+          empresa_id?: string
+          id?: string
+          importacao_id?: string
+          nat_rec_pis?: string | null
+          ordem?: number | null
+          selecionado?: boolean | null
+          sujeito_pis_cofins?: string | null
+          tipo_pis_cofins?: string | null
+          tipo_tributacao?: string | null
+          vinculo_credito?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "grupos_fiscais_empresa_id_fkey"
+            columns: ["empresa_id"]
+            isOneToOne: false
+            referencedRelation: "empresas"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "grupos_fiscais_importacao_id_fkey"
+            columns: ["importacao_id"]
+            isOneToOne: false
+            referencedRelation: "importacoes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      importacoes: {
+        Row: {
+          created_at: string | null
+          csv_gerado_em: string | null
+          descricao_vigencia: string | null
+          empresa_id: string
+          id: string
+          metadados: Json | null
+          nome_arquivo: string
+          status: string | null
+          tamanho_arquivo: number | null
+          total_duplicados_removidos: number | null
+          total_grupos: number | null
+          total_ncms: number | null
+          total_ncms_exportados: number | null
+          updated_at: string | null
+          usuario_id: string
+          vigencia: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          csv_gerado_em?: string | null
+          descricao_vigencia?: string | null
+          empresa_id: string
+          id?: string
+          metadados?: Json | null
+          nome_arquivo: string
+          status?: string | null
+          tamanho_arquivo?: number | null
+          total_duplicados_removidos?: number | null
+          total_grupos?: number | null
+          total_ncms?: number | null
+          total_ncms_exportados?: number | null
+          updated_at?: string | null
+          usuario_id: string
+          vigencia?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          csv_gerado_em?: string | null
+          descricao_vigencia?: string | null
+          empresa_id?: string
+          id?: string
+          metadados?: Json | null
+          nome_arquivo?: string
+          status?: string | null
+          tamanho_arquivo?: number | null
+          total_duplicados_removidos?: number | null
+          total_grupos?: number | null
+          total_ncms?: number | null
+          total_ncms_exportados?: number | null
+          updated_at?: string | null
+          usuario_id?: string
+          vigencia?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "importacoes_empresa_id_fkey"
+            columns: ["empresa_id"]
+            isOneToOne: false
+            referencedRelation: "empresas"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       managed_cards: {
         Row: {
@@ -364,6 +659,98 @@ export type Database = {
         }
         Relationships: []
       }
+      mapeamentos_xml: {
+        Row: {
+          ativa: boolean | null
+          created_at: string | null
+          empresa_id: string
+          id: string
+          impostograma_campos_disponiveis: Json | null
+          nfe_campos_disponiveis: Json | null
+          nome: string
+          regras_comparacao: Json | null
+          regras_matching: Json | null
+          updated_at: string | null
+        }
+        Insert: {
+          ativa?: boolean | null
+          created_at?: string | null
+          empresa_id: string
+          id?: string
+          impostograma_campos_disponiveis?: Json | null
+          nfe_campos_disponiveis?: Json | null
+          nome: string
+          regras_comparacao?: Json | null
+          regras_matching?: Json | null
+          updated_at?: string | null
+        }
+        Update: {
+          ativa?: boolean | null
+          created_at?: string | null
+          empresa_id?: string
+          id?: string
+          impostograma_campos_disponiveis?: Json | null
+          nfe_campos_disponiveis?: Json | null
+          nome?: string
+          regras_comparacao?: Json | null
+          regras_matching?: Json | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mapeamentos_xml_empresa_id_fkey"
+            columns: ["empresa_id"]
+            isOneToOne: false
+            referencedRelation: "empresas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ncms: {
+        Row: {
+          cest: string | null
+          created_at: string | null
+          descricao_produto: string | null
+          empresa_id: string
+          grupo_fiscal_id: string
+          id: string
+          ncm: string
+        }
+        Insert: {
+          cest?: string | null
+          created_at?: string | null
+          descricao_produto?: string | null
+          empresa_id: string
+          grupo_fiscal_id: string
+          id?: string
+          ncm: string
+        }
+        Update: {
+          cest?: string | null
+          created_at?: string | null
+          descricao_produto?: string | null
+          empresa_id?: string
+          grupo_fiscal_id?: string
+          id?: string
+          ncm?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ncms_empresa_id_fkey"
+            columns: ["empresa_id"]
+            isOneToOne: false
+            referencedRelation: "empresas"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ncms_grupo_fiscal_id_fkey"
+            columns: ["grupo_fiscal_id"]
+            isOneToOne: false
+            referencedRelation: "grupos_fiscais"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       organization_settings: {
         Row: {
           id: number
@@ -384,6 +771,41 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: []
+      }
+      perfis: {
+        Row: {
+          avatar_url: string | null
+          created_at: string | null
+          id: string
+          nome_completo: string | null
+          ultima_empresa_id: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string | null
+          id: string
+          nome_completo?: string | null
+          ultima_empresa_id?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string | null
+          id?: string
+          nome_completo?: string | null
+          ultima_empresa_id?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "perfis_ultima_empresa_fk"
+            columns: ["ultima_empresa_id"]
+            isOneToOne: false
+            referencedRelation: "empresas"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
@@ -420,6 +842,83 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: []
+      }
+      regras_entrada: {
+        Row: {
+          ativa: boolean | null
+          created_at: string | null
+          empresa_id: string
+          id: string
+          nome: string | null
+          regras: Json
+          updated_at: string | null
+        }
+        Insert: {
+          ativa?: boolean | null
+          created_at?: string | null
+          empresa_id: string
+          id?: string
+          nome?: string | null
+          regras?: Json
+          updated_at?: string | null
+        }
+        Update: {
+          ativa?: boolean | null
+          created_at?: string | null
+          empresa_id?: string
+          id?: string
+          nome?: string | null
+          regras?: Json
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "regras_entrada_empresa_id_fkey"
+            columns: ["empresa_id"]
+            isOneToOne: false
+            referencedRelation: "empresas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_departments: {
+        Row: {
+          created_at: string
+          department_id: string
+          id: string
+          is_primary: boolean
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          department_id: string
+          id?: string
+          is_primary?: boolean
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          department_id?: string
+          id?: string
+          is_primary?: boolean
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_departments_department_id_fkey"
+            columns: ["department_id"]
+            isOneToOne: false
+            referencedRelation: "departments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_departments_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_favorites: {
         Row: {
@@ -478,6 +977,38 @@ export type Database = {
         }
         Relationships: []
       }
+      usuario_empresas: {
+        Row: {
+          created_at: string | null
+          empresa_id: string
+          id: string
+          papel: string | null
+          usuario_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          empresa_id: string
+          id?: string
+          papel?: string | null
+          usuario_id: string
+        }
+        Update: {
+          created_at?: string | null
+          empresa_id?: string
+          id?: string
+          papel?: string | null
+          usuario_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "usuario_empresas_empresa_id_fkey"
+            columns: ["empresa_id"]
+            isOneToOne: false
+            referencedRelation: "empresas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -491,9 +1022,49 @@ export type Database = {
         }
         Returns: boolean
       }
+      user_has_access_to_empresa: {
+        Args: { p_empresa_id: string }
+        Returns: boolean
+      }
     }
     Enums: {
       app_role: "admin" | "viewer" | "director" | "employee" | "financial_staff"
+      checklist_item_status: "pending" | "in_progress" | "completed" | "skipped"
+      client_status: "onboarding" | "active" | "inactive" | "suspended"
+      department_slug:
+        | "fiscal"
+        | "contabil"
+        | "pessoal"
+        | "financeiro"
+        | "legalizacao"
+      event_type:
+        | "meeting"
+        | "phone_call"
+        | "email"
+        | "document_sent"
+        | "document_received"
+        | "issue"
+        | "resolution"
+        | "observation"
+        | "onboarding_step"
+        | "other"
+      onboarding_target:
+        | "pj_simples"
+        | "pj_presumido"
+        | "pj_real"
+        | "pf"
+        | "mei"
+      person_type: "pf" | "pj"
+      recurrence_type: "daily" | "weekly" | "monthly" | "quarterly" | "yearly"
+      task_priority: "low" | "medium" | "high" | "urgent"
+      task_status:
+        | "pending"
+        | "in_progress"
+        | "completed"
+        | "overdue"
+        | "cancelled"
+      tax_regime: "simples_nacional" | "lucro_presumido" | "lucro_real" | "mei"
+      user_role: "admin" | "manager" | "collaborator"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -622,6 +1193,40 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "viewer", "director", "employee", "financial_staff"],
+      checklist_item_status: ["pending", "in_progress", "completed", "skipped"],
+      client_status: ["onboarding", "active", "inactive", "suspended"],
+      department_slug: [
+        "fiscal",
+        "contabil",
+        "pessoal",
+        "financeiro",
+        "legalizacao",
+      ],
+      event_type: [
+        "meeting",
+        "phone_call",
+        "email",
+        "document_sent",
+        "document_received",
+        "issue",
+        "resolution",
+        "observation",
+        "onboarding_step",
+        "other",
+      ],
+      onboarding_target: ["pj_simples", "pj_presumido", "pj_real", "pf", "mei"],
+      person_type: ["pf", "pj"],
+      recurrence_type: ["daily", "weekly", "monthly", "quarterly", "yearly"],
+      task_priority: ["low", "medium", "high", "urgent"],
+      task_status: [
+        "pending",
+        "in_progress",
+        "completed",
+        "overdue",
+        "cancelled",
+      ],
+      tax_regime: ["simples_nacional", "lucro_presumido", "lucro_real", "mei"],
+      user_role: ["admin", "manager", "collaborator"],
     },
   },
 } as const
