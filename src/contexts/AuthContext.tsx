@@ -10,8 +10,7 @@ interface AuthContextType {
   session: Session | null;
   userRole: AppRole | null;
   isLoading: boolean;
-  signIn: (email: string, password: string) => Promise<{ error: any }>;
-  signUp: (email: string, password: string, fullName: string) => Promise<{ error: any }>;
+  signInWithGoogle: () => Promise<void>;
   signOut: () => Promise<void>;
   isAdmin: () => boolean;
 }
@@ -33,7 +32,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
 
-  // Fetch user role
   const fetchUserRole = async (userId: string) => {
     const { data, error } = await supabase
       .from('user_roles')
@@ -52,13 +50,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    // Set up auth state listener FIRST
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
         setSession(session);
         setUser(session?.user ?? null);
         
-        // Defer role fetching to prevent deadlock
         if (session?.user) {
           setTimeout(() => {
             fetchUserRole(session.user.id).then(role => {
@@ -73,7 +69,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
     );
 
-    // THEN check for existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
@@ -91,10 +86,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => subscription.unsubscribe();
   }, []);
 
-  const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
+  const signInWithGoogle = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: window.location.origin,
+      },
     });
 
     if (error) {
@@ -104,38 +101,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         description: error.message,
       });
     }
-
-    return { error };
-  };
-
-  const signUp = async (email: string, password: string, fullName: string) => {
-    const redirectUrl = `${window.location.origin}/`;
-    
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: redirectUrl,
-        data: {
-          full_name: fullName,
-        },
-      },
-    });
-
-    if (error) {
-      toast({
-        variant: "destructive",
-        title: "Erro ao criar conta",
-        description: error.message,
-      });
-    } else {
-      toast({
-        title: "Conta criada!",
-        description: "Verifique seu email para confirmar sua conta.",
-      });
-    }
-
-    return { error };
   };
 
   const signOut = async () => {
@@ -156,8 +121,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     session,
     userRole,
     isLoading,
-    signIn,
-    signUp,
+    signInWithGoogle,
     signOut,
     isAdmin,
   };
