@@ -10,6 +10,8 @@ interface AuthContextType {
   session: Session | null;
   userRole: AppRole | null;
   isLoading: boolean;
+  signIn: (email: string, password: string) => Promise<{ error: any }>;
+  signUp: (email: string, password: string, fullName: string) => Promise<{ error: any }>;
   signInWithGoogle: () => Promise<void>;
   signOut: () => Promise<void>;
   isAdmin: () => boolean;
@@ -86,6 +88,37 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => subscription.unsubscribe();
   }, []);
 
+  const signIn = async (email: string, password: string) => {
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) {
+      toast({
+        variant: "destructive",
+        title: "Erro ao fazer login",
+        description: error.message,
+      });
+    }
+    return { error };
+  };
+
+  const signUp = async (email: string, password: string, fullName: string) => {
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { full_name: fullName },
+        emailRedirectTo: window.location.origin,
+      },
+    });
+    if (error) {
+      toast({
+        variant: "destructive",
+        title: "Erro ao criar conta",
+        description: error.message,
+      });
+    }
+    return { error };
+  };
+
   const signInWithGoogle = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
@@ -121,6 +154,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     session,
     userRole,
     isLoading,
+    signIn,
+    signUp,
     signInWithGoogle,
     signOut,
     isAdmin,
