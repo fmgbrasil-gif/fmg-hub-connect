@@ -38,15 +38,13 @@ const Dashboard = () => {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {/* Acesso Comum Card */}
           <Card className="group relative overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
             <CardHeader className="pt-8 pb-6 px-6">
-              {/* Icon */}
               <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-primary flex items-center justify-center mb-6 mx-auto shadow-md group-hover:scale-105 transition-transform duration-300">
                 <Users className="h-8 w-8 sm:h-10 sm:w-10 text-primary-foreground" />
               </div>
-              
               <CardTitle className="text-center text-xl sm:text-2xl mb-2 group-hover:text-primary transition-colors duration-300">
                 Acesso Comum
               </CardTitle>
@@ -54,7 +52,6 @@ const Dashboard = () => {
                 Base de conhecimento e sistemas para toda a equipe
               </CardDescription>
             </CardHeader>
-            
             <CardContent className="flex justify-center pb-8 px-6">
               <Link to="/acesso-comum" className="w-full">
                 <Button size="lg" className="w-full h-12 text-base font-medium">
@@ -68,11 +65,9 @@ const Dashboard = () => {
           {/* Acesso Gestão Card */}
           <Card className="group relative overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
             <CardHeader className="pt-8 pb-6 px-6">
-              {/* Icon */}
               <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-accent flex items-center justify-center mb-6 mx-auto shadow-md group-hover:scale-105 transition-transform duration-300">
                 <Shield className="h-8 w-8 sm:h-10 sm:w-10 text-accent-foreground" />
               </div>
-              
               <CardTitle className="text-center text-xl sm:text-2xl mb-2 group-hover:text-accent transition-colors duration-300">
                 Acesso Gestão
               </CardTitle>
@@ -80,7 +75,6 @@ const Dashboard = () => {
                 Área restrita para gestores e diretores
               </CardDescription>
             </CardHeader>
-            
             <CardContent className="flex justify-center pb-8 px-6">
               <Link to="/acesso-gestao" className="w-full">
                 <Button size="lg" variant="outline" className="w-full h-12 text-base font-medium border-2 hover:bg-accent hover:text-accent-foreground hover:border-accent transition-colors duration-300">
@@ -90,19 +84,27 @@ const Dashboard = () => {
               </Link>
             </CardContent>
           </Card>
-        </div>
 
-        {/* Registro de Eventos - RH */}
-        <div className="mt-8 flex justify-center">
-          <Button
-            variant="outline"
-            size="lg"
-            className="h-12 px-6 text-base font-medium gap-2 border-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-300"
-            onClick={() => setPipefyOpen(true)}
-          >
-            <ClipboardList className="h-5 w-5" />
-            Registro de Eventos - RH
-          </Button>
+          {/* Registro de Eventos - RH Card */}
+          <Card className="group relative overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+            <CardHeader className="pt-8 pb-6 px-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-primary flex items-center justify-center mb-6 mx-auto shadow-md group-hover:scale-105 transition-transform duration-300">
+                <ClipboardList className="h-8 w-8 sm:h-10 sm:w-10 text-primary-foreground" />
+              </div>
+              <CardTitle className="text-center text-xl sm:text-2xl mb-2 group-hover:text-primary transition-colors duration-300">
+                Registro de Eventos
+              </CardTitle>
+              <CardDescription className="text-center text-sm sm:text-base leading-relaxed">
+                Formulário de registro de eventos dos colaboradores ao RH
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex justify-center pb-8 px-6">
+              <Button size="lg" variant="outline" className="w-full h-12 text-base font-medium border-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-300" onClick={() => setPipefyOpen(true)}>
+                Abrir Formulário
+                <span className="ml-2">→</span>
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </div>
 
