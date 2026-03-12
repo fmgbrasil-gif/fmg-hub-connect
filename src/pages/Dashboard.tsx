@@ -91,7 +91,27 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         </div>
+
+        {/* Registro de Eventos - RH */}
+        <div className="mt-8 flex justify-center">
+          <Button
+            variant="outline"
+            size="lg"
+            className="h-12 px-6 text-base font-medium gap-2 border-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-300"
+            onClick={() => setPipefyOpen(true)}
+          >
+            <ClipboardList className="h-5 w-5" />
+            Registro de Eventos - RH
+          </Button>
+        </div>
       </div>
+
+      <IframeDialog
+        open={pipefyOpen}
+        onOpenChange={setPipefyOpen}
+        url="https://app.pipefy.com/public/form/K6nLZ7ae?embedded=true"
+        title="Registro de Eventos - RH"
+      />
     </div>
   );
 };
