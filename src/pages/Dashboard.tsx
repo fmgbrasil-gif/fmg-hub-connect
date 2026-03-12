@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, Shield } from "lucide-react";
+import { Users, Shield, ClipboardList } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import IframeDialog from "@/components/IframeDialog";
 
 const Dashboard = () => {
+  const [pipefyOpen, setPipefyOpen] = useState(false);
   return (
     <div className="min-h-screen">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
@@ -88,7 +91,27 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         </div>
+
+        {/* Registro de Eventos - RH */}
+        <div className="mt-8 flex justify-center">
+          <Button
+            variant="outline"
+            size="lg"
+            className="h-12 px-6 text-base font-medium gap-2 border-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors duration-300"
+            onClick={() => setPipefyOpen(true)}
+          >
+            <ClipboardList className="h-5 w-5" />
+            Registro de Eventos - RH
+          </Button>
+        </div>
       </div>
+
+      <IframeDialog
+        open={pipefyOpen}
+        onOpenChange={setPipefyOpen}
+        url="https://app.pipefy.com/public/form/K6nLZ7ae?embedded=true"
+        title="Registro de Eventos - RH"
+      />
     </div>
   );
 };
